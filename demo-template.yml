@@ -1,0 +1,35 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+  EC2Instance: # Nom logique
+    Type: AWS::EC2::Instance # type ressource
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0ee415e1b8b71305f
+      SecurityGroups:
+        - !Ref SSHSecurityGroup
+        - !Ref SSHSecurityGroup2
+      KeyName: cheick-ubuntu-key
+
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH via port 22
+      GroupName: MySsh-sg
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
+
+  SSHSecurityGroup2:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH via port 22
+      GroupName: MySsh-sg
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
